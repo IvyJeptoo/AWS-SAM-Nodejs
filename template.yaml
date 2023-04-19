@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  http-greet-api
+
+  Sample SAM Template for http-greet-api
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 128
+
+Resources:
+
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: nonprod
+
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: hello-world/
+      Handler: app.lambdaHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      Events:
+        GetUsers:
+          Type: HttpApi 
+          Properties:
+            Path: /user
+            Method: get
+            ApiId:
+              Ref: HttpApi
+
+        GetUser:
+          Type: HttpApi 
+          Properties:
+            Path: /user/{id}
+            Method: get
+            ApiId:
+              Ref: HttpApi
+              
+        PostUser:
+          Type: HttpApi 
+          Properties:
+            Path: /user
+            Method: post
+            ApiId:
+              Ref: HttpApi
+
