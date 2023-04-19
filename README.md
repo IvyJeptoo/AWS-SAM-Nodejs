@@ -24,7 +24,7 @@ The AWS Toolkit is an open source plug-in for popular IDEs that uses the SAM CLI
 * [VS Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html)
 * [Visual Studio](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/welcome.html)
 
-## Deploy the sample application
+## Deploy the application
 
 The Serverless Application Model Command Line Interface (SAM CLI) is an extension of the AWS CLI that adds functionality for building and testing Lambda applications. It uses Docker to run your functions in an Amazon Linux environment that matches Lambda. It can also emulate your application's build environment and API.
 
@@ -50,6 +50,12 @@ The first command will build the source of your application. The second command 
 * **Save arguments to samconfig.toml**: If set to yes, your choices will be saved to a configuration file inside the project, so that in the future you can just re-run `sam deploy` without parameters to deploy changes to your application.
 
 You can find your API Gateway Endpoint URL in the output values displayed after deployment.
+
+## Testing using Thunder Client
+* Install the **Thunder Client Extension** on your VS code and it will appear on the left side bar.
+* Click on **New Request** which will open a page where you can paste your **Invoke URL** link and choose the request you want to make.
+* **Send** the request and a response is displayed on the right side panel.
+* From here you will kow whether you API is funcctional or not.
 
 ## Use the SAM CLI to build and test locally
 
