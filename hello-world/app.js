@@ -40,7 +40,12 @@ exports.lambdaHandler = async (event, context) => {
         }
         // single user by id
         else if (event.routeKey === 'GET /user/{id}'){
-            result = JSON.stringify(USERS.find(e => e.user_id == event.pathParameters.id));
+            const user = USERS.find(e => e.user_id == event.pathParameters.id);
+            if (user) {
+                result = `Hello ${user.name}`
+            } else {
+                result = 'User not found'
+            }
         }
         response = {
             'statusCode': 200,
